@@ -1,0 +1,40 @@
+Solution By Procedural Language ("C" Language):
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int target(int resultValue)
+{
+    int x, y, xTravBy, yTravBy, moveBy, temp;
+    x = y = xTravBy = moveBy = 0;
+    yTravBy = -1;
+    for (;;)
+       {
+        moveBy += 1;
+        if (resultValue == moveBy){
+            return abs(x) + abs(y);
+        }
+        if ((x == y) || ((x < 0) && (x == -y)) || ((x > 0) && (x == 1-y))){
+            temp = xTravBy;
+            xTravBy = -yTravBy;
+            yTravBy = temp;
+            
+        }
+        x += xTravBy;
+        y += yTravBy;
+          
+    }
+}
+
+int main()
+{
+    int num_matrix=0;
+    printf("\nPlease enter a number between 1 and 2000: ");
+    scanf("%d", &num_matrix);
+    if(num_matrix<=0 || num_matrix>2000){
+        printf("\nInvalid entry, Please try again");
+        return 0;
+    }
+    printf("Shortest distance travel to reach square 1 is %d steps \n", target(num_matrix));
+    return 0;
+}
